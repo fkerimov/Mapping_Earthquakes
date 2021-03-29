@@ -116,10 +116,10 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
     }
     }).addTo(allEarthquakes);
 
-  allEarthquakes.addTo(map);
+allEarthquakes.addTo(map);
 
-  // Here we create a legend control object.
-  let legend = L.control({
+// Here we create a legend control object.
+let legend = L.control({
     position: "bottomright"
   });
   
@@ -137,23 +137,23 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
       "#ea2c2c"
     ];
 
-    // Looping through our intervals to generate a label with a colored square for each interval.
+  // Looping through our intervals to generate a label with a colored square for each interval.
     for (var i = 0; i < magnitudes.length; i++) {
       console.log(colors[i]);
       div.innerHTML +=
         "<i style='background: " + colors[i] + "'></i> " +
         magnitudes[i] + (magnitudes[i + 1] ? "&ndash;" + magnitudes[i + 1] + "<br>" : "+");
-    }
+      }
       return div;
-  };
+    };
   
-  // Finally, we our legend to the map.
-  legend.addTo(map);
+    // Finally, we our legend to the map.
+    legend.addTo(map);
 })
 
 // Retrieve the major earthquake GeoJSON data > 4.5 mag for the week
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson").then(function(data) {
-  // Creating GeoJSON layer with the retrieved data
+    // Creating GeoJSON layer with the retrieved data
   L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
       console.log(data);
